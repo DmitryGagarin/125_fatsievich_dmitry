@@ -1,8 +1,6 @@
-
-
 public class Task_1 implements Task_1_base {
     @Override
-    public int subtask_1_if(int first, int second, int third) {
+    public int subtask_1_if(int first, int second, int third) { // Вычислить и вернуть минимальный из трех полученных аргументов (first, second, third)
         int minimum = first;
         if (minimum > second) {
             minimum = second;
@@ -10,8 +8,7 @@ public class Task_1 implements Task_1_base {
         if (minimum > third) {
             minimum = third;
         }
-        // Вычислить и вернуть минимальный из трех полученных аргументов (first, second, third)
-        return minimum; // Замените данный оператор кодом, решающим поставленную задачу.
+        return minimum;
     }
 
     @Override
@@ -19,7 +16,7 @@ public class Task_1 implements Task_1_base {
         // Проверить, является ли год, переданный в параметре year, високосным.
         // Високосный год - это год, кратный четырем, но не кратный 100, либо кратный 400
         //return false; Замените данный оператор кодом, решающим поставленную задачу.
-        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+        return year%4 == 0 && year%100 != 0 || year%400 == 0;
     }
 
     @Override
@@ -36,20 +33,18 @@ public class Task_1 implements Task_1_base {
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
         // Замените данный оператор кодом, решающим поставленную задачу.
         //System.out.println(x+","+y+","+left_up_x+","+left_up_y+","+width+","+height);
-
-        if (height <= 0 || width != height || width<=0) {
-            return 2;
-        }
-        if ((x > left_up_x) && (x < left_up_x + width) &&
-                (y < left_up_y) && (y > left_up_y - height)) {
-
-            return 1;
-        }
-       // if ((x - left_up_x)>0.000001 || (x - (left_up_x + width)>0.000001) ||
-       //         (y - left_up_y)>0.000001 || (y - (left_up_y - height)>0.000001)) {
-       //     return 1;
-        //}
-        return 0;
+        double upper_point = left_up_x+width;
+        double the_left_point = left_up_y-height;
+        if(width == height)
+            if((upper_point - x <= 0.000001 || x-left_up_x <= 0.000001) || (left_up_y-y <= 0.000001 || y-the_left_point <= 0.000001))
+                return 0;
+            else
+            if(x > left_up_x && x < upper_point && y < left_up_y && y > the_left_point)
+                return 1;
+            else
+                return 0;
+            else
+                return 2;
     }
 
     @Override
@@ -61,8 +56,12 @@ public class Task_1 implements Task_1_base {
         // 1 - лежит ниже прямой
         // 2 - лежит на прямой
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
-        // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        if(Math.abs(y0-(k*x0+b)) <= 0.000001)
+            return 2;
+        else if(y0 > k*x0+b)
+            return 0;
+        else
+            return 1;
     }
 
     @Override
@@ -70,7 +69,6 @@ public class Task_1 implements Task_1_base {
         // По номеру дня недели day_od_week вернуть его название на русском языке, записанное
         // с большой буквы. Дни едели отсчитываются с единицы. Если номер задан некорректно,
         // вернуть строку "Ошибка"
-        // ------------------------------------------------------------------------------------
         String day = "Ошибка";
         switch (day_od_week) {
             case 1 -> day = "Понедельник";
@@ -81,7 +79,7 @@ public class Task_1 implements Task_1_base {
             case 6 -> day = "Суббота";
             case 7 -> day = "Воскресенье";
         }
-        return day; // Замените данный оператор кодом, решающим поставленную задачу.
+        return day;
     }
 
     @Override
@@ -112,8 +110,14 @@ public class Task_1 implements Task_1_base {
         // 1 - достигнет
         // 2 - аргументы функции заданы некорректно
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
-        // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        double distance = Math.sqrt(wall*wall*Math.abs(vx) + wall*wall*Math.abs(vy) + wall*wall*Math.abs(vz));
+        if(time > 0 && speed > 0)
+            if((distance/speed <= time && vx != 0) || Math.abs(distance/speed - time) <= 0.000001 )
+                return 1;
+            else
+                return 0;
+            else
+                return 2;
     }
 
     @Override
