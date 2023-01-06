@@ -20,7 +20,7 @@ public class BunkerItems extends Utils{
         possibleItemsInBunker();
         //создаю счетчик выдачи рандомных предметов
         int j =  (int) (Math.random() * possibleItemsInBunker.length);
-        int x = 2 + (int) (Math.random() * 12);
+        int x = 2 + (int) (Math.random() * 10);
         inventory.add(possibleItemsInBunker[j]);
         for (int i = 1; i <= x; i++) {
             int index = (int) (Math.random() * possibleItemsInBunker.length);
